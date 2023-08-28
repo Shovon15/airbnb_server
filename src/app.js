@@ -9,12 +9,23 @@ const { errorResponse } = require("./controllers/responseController");
 const createError = require("http-errors");
 
 const app = express();
-app.use(cors());
+app.use(
+	cors({
+		origin: ["https://airbnb-server-hazel.vercel.app"],
+		methods: ["POST", "GET"],
+		credentials: true,
+	})
+);
 
 app.use("/api/seed", seedCategoryRouter, seedItemRouter);
 app.use("/api/category", categoryRouter);
 app.use("/api/item", itemRouter);
 
+app.get("/user", (req, res) => {
+	res.status(200).send({
+		message: "user user user",
+	});
+});
 app.get("/", (req, res) => {
 	res.status(200).send({
 		message: "welcome to Airbnb server!!!",
