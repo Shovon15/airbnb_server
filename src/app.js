@@ -15,6 +15,12 @@ app.use("/api/seed", seedCategoryRouter, seedItemRouter);
 app.use("/api/category", categoryRouter);
 app.use("/api/item", itemRouter);
 
+app.get("/", (req, res) => {
+	res.status(200).send({
+		message: "welcome to Airbnb server!!!",
+	});
+});
+
 //client error--------------------
 app.use((req, res, next) => {
 	next(createError(404, "Route not found."));
@@ -25,12 +31,6 @@ app.use((err, req, res, next) => {
 	return errorResponse(res, {
 		statusCode: err.status,
 		message: err.message,
-	});
-});
-
-app.get("/", (req, res) => {
-	res.status(200).send({
-		message: "welcome to Airbnb server!!!",
 	});
 });
 
