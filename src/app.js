@@ -9,13 +9,7 @@ const { errorResponse } = require("./controllers/responseController");
 const createError = require("http-errors");
 
 const app = express();
-app.use(
-	cors({
-		origin: ["https://airbnb-server-hazel.vercel.app"],
-		methods: ["POST", "GET"],
-		credentials: true,
-	})
-);
+app.use(cors());
 
 app.use("/api/seed", seedCategoryRouter, seedItemRouter);
 app.use("/api/category", categoryRouter);
