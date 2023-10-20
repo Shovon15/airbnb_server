@@ -145,7 +145,7 @@ const getSearchItems = async (req, res, next) => {
 		if (!items || items.length === 0) {
 			throw createError(404, "No items found");
 		}
-		console.log(count, "count");
+		// console.log(count, "count");
 		return successResponse(res, {
 			statusCode: 200,
 			message: "Items were returned successfully!!!",
