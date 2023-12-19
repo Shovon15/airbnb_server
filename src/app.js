@@ -7,6 +7,7 @@ const itemRouter = require("./routers/itemRouter");
 const { seedCategoryRouter, seedItemRouter } = require("./routers/seedRouter");
 const { errorResponse } = require("./controllers/responseController");
 const createError = require("http-errors");
+const connectDB = require("./config/db");
 
 const app = express();
 app.use(cors());
@@ -25,6 +26,7 @@ app.get("/", (req, res) => {
 		message: "welcome to Airbnb server!!!",
 	});
 });
+connectDB();
 
 //client error--------------------
 app.use((req, res, next) => {

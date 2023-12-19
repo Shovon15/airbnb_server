@@ -48,12 +48,15 @@ const getItems = async (req, res, next) => {
 
 const getFilterItems = async (req, res, next) => {
 	try {
-		const minPrice = parseFloat(req.query.minPrice) || 0;
-		const maxPrice = parseFloat(req.query.maxPrice) || Number.MAX_SAFE_INTEGER;
-		const minRooms = parseInt(req.query.room) || 0;
-		const minBeds = parseInt(req.query.bed) || 0;
-		const minBathrooms = parseInt(req.query.bathroom) || 0;
-		const propertyTypes = req.query.property_type || [];
+		const { params } = req.query;
+		// const { property_type, room, bed, bathroom, minPrice, maxPrice } = req.query;
+
+		const minPrice = parseFloat(params.minPrice) || 0;
+		const maxPrice = parseFloat(params.maxPrice) || Number.MAX_SAFE_INTEGER;
+		const minRooms = parseInt(params.room) || 0;
+		const minBeds = parseInt(params.bed) || 0;
+		const minBathrooms = parseInt(params.bathroom) || 0;
+		const propertyTypes = params.property_type || [];
 
 		let filter = {
 			$and: [
@@ -99,6 +102,13 @@ const getFilterItems = async (req, res, next) => {
 			payload: {
 				items,
 				count,
+				// minPrice,
+				// maxPrice,
+				// minRooms,
+				// minBeds,
+				// propertyTypes,
+				// minBathrooms,
+				// params,
 			},
 		});
 	} catch (error) {
